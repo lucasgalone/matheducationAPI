@@ -6,6 +6,8 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import TeacherController from './app/controllers/TeacherController';
+import TurmaController from './app/controllers/TurmaController';
+import StudentController from './app/controllers/StudentController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -20,6 +22,13 @@ routes.use(authMiddleware);
 routes.put('/users', UserController.update);
 
 routes.get('/teachers', TeacherController.index);
+
+routes.get('/students', StudentController.index);
+routes.post('/students', StudentController.store);
+
+routes.post('/turmas', TurmaController.store);
+routes.put('/turmas', TurmaController.update);
+routes.get('/turmas', TurmaController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

@@ -11,6 +11,7 @@ class User extends Model {
         password_hash: Sequelize.STRING,
         score: Sequelize.INTEGER,
         teacher: Sequelize.BOOLEAN,
+        turma_id: Sequelize.INTEGER,
       },
       {
         sequelize,
@@ -28,6 +29,7 @@ class User extends Model {
 
   static associate(models) {
     this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+    this.belongsTo(models.Turma, { foreignKey: 'turma_id', as: 'turma' });
   }
 
   checkPassword(password) {
