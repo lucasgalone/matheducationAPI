@@ -23,8 +23,10 @@ routes.put('/users', UserController.update);
 
 routes.get('/teachers', TeacherController.index);
 
+routes.get('/students/:id', StudentController.getById);
 routes.get('/students', StudentController.index);
 routes.post('/students', StudentController.store);
+routes.put('/students', StudentController.update);
 routes.delete('/students/:id', StudentController.delete);
 
 routes.post('/turmas', TurmaController.store);
