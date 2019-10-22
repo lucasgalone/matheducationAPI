@@ -56,6 +56,13 @@ class StudentController {
     });
   }
 
+  async delete(req, res) {
+    await User.destroy({
+      where: { id: req.params.id },
+    });
+    return res.json();
+  }
+
   // async update(req, res) {
   //   const schema = Yup.object().shape({
   //     nome: Yup.string(),

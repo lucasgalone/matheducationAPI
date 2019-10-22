@@ -25,6 +25,7 @@ routes.get('/teachers', TeacherController.index);
 
 routes.get('/students', StudentController.index);
 routes.post('/students', StudentController.store);
+routes.delete('/students/:id', StudentController.delete);
 
 routes.post('/turmas', TurmaController.store);
 routes.put('/turmas', TurmaController.update);
