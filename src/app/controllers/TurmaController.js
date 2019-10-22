@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import Turma from '../models/Turma';
+import User from '../models/User';
 
 class TurmaController {
   async index(req, res) {
@@ -8,6 +9,14 @@ class TurmaController {
     });
 
     return res.json(turmas);
+  }
+
+  async getById(req, res) {
+    const { id, nome } = await Turma.findByPk(req.params.id);
+    return res.json({
+      id,
+      nome,
+    });
   }
 
   async store(req, res) {
@@ -32,6 +41,21 @@ class TurmaController {
       id,
       nome,
     });
+  }
+
+  async delete(req, res) {
+    const turmaBound = await User.findOne({
+      where: { turma_id: req.params.id },
+    });
+
+    if (turmaBound) {
+      return res.json({ excluido: false });
+    }
+
+    await Turma.destroy({
+      where: { id: req.params.id },
+    });
+    return res.json({ excluido: true });
   }
 
   async update(req, res) {

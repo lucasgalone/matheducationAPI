@@ -30,8 +30,10 @@ routes.put('/students', StudentController.update);
 routes.delete('/students/:id', StudentController.delete);
 
 routes.post('/turmas', TurmaController.store);
+routes.get('/turmas/:id', TurmaController.getById);
 routes.put('/turmas', TurmaController.update);
 routes.get('/turmas', TurmaController.index);
+routes.delete('/turmas/:id', TurmaController.delete);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

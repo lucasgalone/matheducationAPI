@@ -80,6 +80,10 @@ class StudentController {
       nome: Yup.string(),
       email: Yup.string().email(),
       password: Yup.string().min(6),
+      turma_id: Yup.number()
+        .positive()
+        .integer()
+        .required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -94,13 +98,14 @@ class StudentController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, nome, password } = await user.update(req.body);
+    const { id, nome, password, turma_id } = await user.update(req.body);
 
     return res.json({
       id,
       nome,
       email,
       password,
+      turma_id,
     });
   }
 }
