@@ -5,10 +5,11 @@ import File from '../app/models/File';
 import Turma from '../app/models/Turma';
 import Conta from '../app/models/Conta';
 import ContaTurma from '../app/models/ContaTurma';
+import Atividade from '../app/models/Atividade';
 
 import databaseConfig from '../config/database';
 
-const models = [User, File, Turma, Conta, ContaTurma];
+const models = [User, File, Turma, Conta, ContaTurma, Atividade];
 
 class Database {
   constructor() {

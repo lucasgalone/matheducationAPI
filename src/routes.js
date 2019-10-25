@@ -9,6 +9,7 @@ import TeacherController from './app/controllers/TeacherController';
 import TurmaController from './app/controllers/TurmaController';
 import StudentController from './app/controllers/StudentController';
 import ContaTurmaController from './app/controllers/ContaTurmaController';
+import AtividadeController from './app/controllers/AtividadeController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -38,6 +39,9 @@ routes.delete('/turmas/:id', TurmaController.delete);
 
 routes.get('/contaturma/:id', ContaTurmaController.getById);
 routes.post('/contaturma', ContaTurmaController.store);
+
+routes.get('/atividades/:id', AtividadeController.getById);
+routes.post('/atividades', AtividadeController.store);
 
 routes.post('/files', upload.single('file'), FileController.store);
 
