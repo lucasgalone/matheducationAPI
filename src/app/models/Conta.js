@@ -1,10 +1,10 @@
 import { Model, Sequelize } from 'sequelize';
 
-class Turma extends Model {
+class Conta extends Model {
   static init(sequelize) {
     super.init(
       {
-        nome: Sequelize.STRING,
+        conta: Sequelize.STRING,
       },
       {
         sequelize,
@@ -14,13 +14,13 @@ class Turma extends Model {
   }
 
   static associate(models) {
-    this.belongsToMany(models.Conta, {
+    this.belongsToMany(models.Turma, {
       through: 'conta_turmas',
-      as: 'conta',
-      foreignKey: 'idturma',
-      otherKey: 'idconta',
+      as: 'turmas',
+      foreignKey: 'idconta',
+      otherKey: 'idturma',
     });
   }
 }
 
-export default Turma;
+export default Conta;
