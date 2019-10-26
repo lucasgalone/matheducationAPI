@@ -52,9 +52,19 @@ class UserController {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
+    if (req.body.score) {
+      if (req.body.score === 1) {
+        req.body.score = user.score + 2;
+      } else if (req.body.score === 2) {
+        req.body.score = user.score + 4;
+      } else {
+        req.body.score = user.score + 6;
+      }
+    }
+
     await user.update(req.body);
 
-    const { id, nome, avatar } = await User.findByPk(req.userId, {
+    const { id, nome, avatar, score } = await User.findByPk(req.userId, {
       include: [
         {
           model: File,
@@ -69,6 +79,7 @@ class UserController {
       nome,
       email,
       avatar,
+      score,
     });
   }
 }
