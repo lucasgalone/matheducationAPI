@@ -4,6 +4,16 @@ import Conta from '../models/Conta';
 import Turma from '../models/Turma';
 
 class ContaTurmaController {
+  async index(req, res) {
+    const turmas = await Turma.findAll({ attributes: ['id', 'nome'] });
+    const contas = await Conta.findAll({ attributes: ['id', 'conta'] });
+    const contaTurma = await ContaTurma.findAll({
+      attributes: ['id', 'idturma', 'idconta'],
+    });
+
+    return res.json({ turmas, contas, contaTurma });
+  }
+
   async getById(req, res) {
     const { turma_id } = await User.findByPk(req.params.id);
 
@@ -31,9 +41,18 @@ class ContaTurmaController {
   }
 
   async store(req, res) {
-    const a = await ContaTurma.create(req.body);
+    const existVinc = await ContaTurma.findOne({
+      where: { idturma: req.body.idturma, idconta: req.body.idconta },
+    });
 
-    return res.json(a);
+    if (existVinc) {
+      const respDelete = await ContaTurma.destroy({
+        where: { id: existVinc.id },
+      });
+      return res.json(respDelete);
+    }
+    const resp = await ContaTurma.create(req.body);
+    return res.json(resp);
   }
 }
 export default new ContaTurmaController();

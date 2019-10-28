@@ -35,6 +35,15 @@ class UserController {
     });
   }
 
+  async getById(req, res) {
+    const { id, nome, score } = await User.findByPk(req.params.id);
+    return res.json({
+      id,
+      nome,
+      score,
+    });
+  }
+
   async update(req, res) {
     const { email, oldPassword } = req.body;
 

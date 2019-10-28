@@ -22,6 +22,7 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
+routes.get('/users/:id', UserController.getById);
 
 routes.get('/teachers', TeacherController.index);
 
@@ -37,6 +38,7 @@ routes.put('/turmas', TurmaController.update);
 routes.get('/turmas', TurmaController.index);
 routes.delete('/turmas/:id', TurmaController.delete);
 
+routes.get('/contaturma', ContaTurmaController.index);
 routes.get('/contaturma/:id', ContaTurmaController.getById);
 routes.post('/contaturma', ContaTurmaController.store);
 
