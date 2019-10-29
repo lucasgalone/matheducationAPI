@@ -7,7 +7,6 @@ class TurmaController {
     const turmas = await Turma.findAll({
       attributes: ['id', 'nome'],
     });
-
     return res.json(turmas);
   }
 
